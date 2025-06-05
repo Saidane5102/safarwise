@@ -2,6 +2,10 @@ import { StyleSheet, Text, View } from "react-native";
 import StepProgress from "./StepProgress";
 
 export default function PlanUmrahPage() {
+  // Hide the Expo Router top bar
+  // @ts-ignore
+  PlanUmrahPage.options = { headerShown: false };
+
   // For demo, set currentStep to 1. You can manage this with state as you build the flow.
   const currentStep = 1;
   return (

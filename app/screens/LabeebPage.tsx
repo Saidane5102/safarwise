@@ -2,6 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function LabeebPage() {
+  // Hide the Expo Router top bar
+  // @ts-ignore
+  LabeebPage.options = { headerShown: false };
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>This is Labeeb's page.</Text>

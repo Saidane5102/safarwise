@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { useRouter } from 'expo-router';
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Modal, Platform, StyleSheet, Text, TouchableOpacity, View, StatusBar } from "react-native";
 import StepProgress from "./StepProgress";
 
 type CounterRowProps = {
@@ -47,6 +48,10 @@ function CounterRow({ label, sublabel, value, onDecrement, onIncrement, min = 0,
 }
 
 export default function PlanUmrahStep3() {
+  // Hide the Expo Router top bar
+  // @ts-ignore
+  PlanUmrahStep3.options = { headerShown: false };
+
   const router = useRouter();
   const [adults, setAdults] = React.useState(0);
   const [children, setChildren] = React.useState(0);
@@ -116,6 +121,7 @@ const styles = StyleSheet.create({
     padding: 0,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight || 32 : 48, // Add space for status bar
   },
   topBarContainer: {
     width: '100%',

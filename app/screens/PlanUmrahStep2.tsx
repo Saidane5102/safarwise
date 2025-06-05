@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import StepProgress from "./StepProgress";
 
 type SelectionButtonProps = {
@@ -36,6 +36,10 @@ function SelectionButton({ label, selected, onPress, accessibilityLabel }: Selec
 }
 
 export default function PlanUmrahStep2() {
+  // Hide the Expo Router top bar
+  // @ts-ignore
+  PlanUmrahStep2.options = { headerShown: false };
+
   const router = useRouter();
   const [selected, setSelected] = React.useState<'yes' | 'no' | null>(null);
   return (
@@ -108,6 +112,7 @@ const styles = StyleSheet.create({
     padding: 0,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight || 32 : 48, // Add space for status bar
   },
   topBarContainer: {
     width: '100%',

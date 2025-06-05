@@ -1,57 +1,54 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
+  // Hide the Expo Router top bar
+  // @ts-ignore
+  HomeScreen.options = { headerShown: false };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
+    <ScrollView style={{ flex: 1, backgroundColor: '#fff' }} contentContainerStyle={{ flexGrow: 1 }}>
+      <View style={{ alignItems: 'center', backgroundColor: '#A1CEDC', width: '100%' }}>
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
+          source={require('../../assets/images/partial-react-logo.png')}
           style={styles.reactLogo}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
+      </View>
+      <View style={styles.titleContainer}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Welcome!</Text>
+      </View>
+      <View style={styles.stepContainer}>
+        <Text style={{ fontSize: 18, fontWeight: '600' }}>Step 1: Try it</Text>
+        <Text>
+          Edit <Text style={{ fontWeight: 'bold' }}>app/(tabs)/index.tsx</Text> to see changes.
           Press{' '}
-          <ThemedText type="defaultSemiBold">
+          <Text style={{ fontWeight: 'bold' }}>
             {Platform.select({
               ios: 'cmd + d',
               android: 'cmd + m',
               web: 'F12',
             })}
-          </ThemedText>{' '}
+          </Text>{' '}
           to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
+        </Text>
+      </View>
+      <View style={styles.stepContainer}>
+        <Text style={{ fontSize: 18, fontWeight: '600' }}>Step 2: Explore</Text>
+        <Text>
           {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: fresh start</ThemedText>
-        <ThemedText>
+        </Text>
+      </View>
+      <View style={styles.stepContainer}>
+        <Text style={{ fontSize: 18, fontWeight: '600' }}>Step 3: fresh start</Text>
+        <Text>
           {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+          <Text style={{ fontWeight: 'bold' }}>npm run reset-project</Text> to get a fresh{' '}
+          <Text style={{ fontWeight: 'bold' }}>app</Text> directory. This will move the current{' '}
+          <Text style={{ fontWeight: 'bold' }}>app</Text> to{' '}
+          <Text style={{ fontWeight: 'bold' }}>app-example</Text>.
+        </Text>
+      </View>
+    </ScrollView>
   );
 }
 

@@ -1,8 +1,12 @@
 import { useRouter } from 'expo-router';
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function HomePage() {
+  // Hide the Expo Router top bar
+  // @ts-ignore
+  HomePage.options = { headerShown: false };
+
   const router = useRouter();
   return (
     <View style={styles.homeContainer}>
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    paddingTop: 0,
+    paddingTop: (Platform.OS === 'android' ? (StatusBar.currentHeight || 32) : 66), // Increased top padding
     paddingBottom: 0,
     gap: 40,
     backgroundColor: '#fff',
@@ -197,5 +201,13 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     backgroundColor: '#fff', // reverted from #FF7A00
     marginBottom: 0,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 0,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight || 32 : 48, // Add space for status bar
   },
 });

@@ -18,6 +18,10 @@ const AIRPORTS = [
 ];
 
 export default function PlanUmrahStep1() {
+  // Hide the Expo Router top bar
+  // @ts-ignore
+  PlanUmrahStep1.options = { headerShown: false };
+
   const router = useRouter();
   const [airport, setAirport] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -144,6 +148,7 @@ const styles = StyleSheet.create({
     padding: 0,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingTop: Platform.OS === 'android' ? 32 : 48, // Add space for status bar
   },
   topBarContainer: {
     width: '100%',

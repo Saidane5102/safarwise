@@ -9,6 +9,10 @@ const LOADING_MESSAGES = [
 ];
 
 export default function PlanUmrahLoading() {
+  // Hide the Expo Router top bar
+  // @ts-ignore
+  PlanUmrahLoading.options = { headerShown: false };
+
   // Animated progress bar
   const progress = useRef(new Animated.Value(0)).current;
   const [messageIdx, setMessageIdx] = useState(0);

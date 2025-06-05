@@ -2,10 +2,14 @@ import { Ionicons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useRouter } from 'expo-router';
 import React from "react";
-import { Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Modal, Platform, StyleSheet, Text, TouchableOpacity, View, StatusBar } from "react-native";
 import StepProgress from "./StepProgress";
 
 export default function PlanUmrahStep4() {
+  // Hide the Expo Router top bar
+  // @ts-ignore
+  PlanUmrahStep4.options = { headerShown: false };
+
   const router = useRouter();
   
   // Set default dates when component mounts
@@ -282,6 +286,7 @@ const styles = StyleSheet.create({
     padding: 0,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight || 32 : 48, // Add space for status bar
   },
   topBarContainer: {
     width: '100%',

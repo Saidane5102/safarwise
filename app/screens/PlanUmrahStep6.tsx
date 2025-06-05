@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { useRouter } from 'expo-router';
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Modal, Platform, StyleSheet, Text, TouchableOpacity, View, StatusBar } from "react-native";
 import StepProgress from "./StepProgress";
 
 const BUDGET_OPTIONS = [
@@ -12,6 +13,10 @@ const BUDGET_OPTIONS = [
 ];
 
 export default function PlanUmrahStep6() {
+  // Hide the Expo Router top bar
+  // @ts-ignore
+  PlanUmrahStep6.options = { headerShown: false };
+
   const router = useRouter();
   const [budget, setBudget] = React.useState<string | null>(null);
   const [firstUmrah, setFirstUmrah] = React.useState<string | null>(null);
@@ -111,8 +116,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    padding: 0,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight || 32 : 48, // Add space for status bar
   },
   topBarContainer: {
     width: '100%',
