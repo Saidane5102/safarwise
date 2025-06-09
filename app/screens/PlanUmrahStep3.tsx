@@ -1,8 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { useRouter } from 'expo-router';
 import React from "react";
-import { Modal, Platform, StyleSheet, Text, TouchableOpacity, View, StatusBar } from "react-native";
+import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import OneButton from '../components/OneButton';
 import StepProgress from "./StepProgress";
 
 type CounterRowProps = {
@@ -99,17 +99,11 @@ export default function PlanUmrahStep3() {
         </View>
       </View>
       {/* Continue Button (fixed at bottom) */}
-      <View style={styles.buttonWrapper}>
-        <TouchableOpacity
-          style={[styles.continueButton, styles.continueButtonEnabled, (adults + children + infants === 0) && { opacity: 0.5 }]}
-          accessibilityLabel="Continue"
-          accessibilityRole="button"
-          onPress={() => (adults + children + infants > 0) && router.push('/screens/PlanUmrahStep4')}
-          disabled={adults + children + infants === 0}
-        >
-          <Text style={[styles.continueButtonText, styles.continueButtonTextEnabled]}>Continue</Text>
-        </TouchableOpacity>
-      </View>
+      <OneButton
+        title="Continue"
+        onPress={() => (adults + children + infants > 0) && router.push('/screens/PlanUmrahStep4')}
+        disabled={adults + children + infants === 0}
+      />
     </View>
   );
 }

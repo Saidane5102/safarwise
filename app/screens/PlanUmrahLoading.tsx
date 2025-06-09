@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, Dimensions, StyleSheet, Text, View } from "react-native";
 
@@ -13,6 +14,7 @@ export default function PlanUmrahLoading() {
   // @ts-ignore
   PlanUmrahLoading.options = { headerShown: false };
 
+  const router = useRouter();
   // Animated progress bar
   const progress = useRef(new Animated.Value(0)).current;
   const [messageIdx, setMessageIdx] = useState(0);
@@ -37,7 +39,13 @@ export default function PlanUmrahLoading() {
     //   setMessageIdx(idx => (idx + 1) % LOADING_MESSAGES.length);
     // }, 3000);
     // return () => clearInterval(interval);
-  }, [progress]);
+
+    // Auto-navigate to BookingFlights after loading
+    const timeout = setTimeout(() => {
+      router.push('/screens/BookingFlights');
+    }, 2200);
+    return () => clearTimeout(timeout);
+  }, [progress, router]);
 
   const barWidth = progress.interpolate({
     inputRange: [0, 1],

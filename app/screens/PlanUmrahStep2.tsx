@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from "react";
 import { Image, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import OneButton from '../components/OneButton';
 import StepProgress from "./StepProgress";
 
 type SelectionButtonProps = {
@@ -86,21 +87,11 @@ export default function PlanUmrahStep2() {
         </View>
       </View>
       {/* Continue Button (fixed at bottom) */}
-      <View style={styles.buttonWrapper}>
-        <TouchableOpacity
-          style={[
-            styles.continueButton,
-            styles.continueButtonEnabled,
-            !selected && { opacity: 0.5 },
-          ]}
-          accessibilityLabel="Continue"
-          accessibilityRole="button"
-          onPress={() => selected && router.push('/screens/PlanUmrahStep3')}
-          disabled={!selected}
-        >
-          <Text style={[styles.continueButtonText, styles.continueButtonTextEnabled]}>Continue</Text>
-        </TouchableOpacity>
-      </View>
+      <OneButton
+        title="Continue"
+        onPress={() => selected && router.push('/screens/PlanUmrahStep3')}
+        disabled={!selected}
+      />
     </View>
   );
 }

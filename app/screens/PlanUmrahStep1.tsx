@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useState } from "react";
 import { FlatList, Keyboard, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import OneButton from '../components/OneButton';
 import StepProgress from "./StepProgress";
 
 const AIRPORTS = [
@@ -124,17 +125,11 @@ export default function PlanUmrahStep1() {
           </View>
 
           {/* Continue Button (fixed at bottom) */}
-          <View style={styles.buttonWrapper}>
-            <TouchableOpacity
-              style={[styles.continueButton, airport ? styles.continueButtonEnabled : null]}
-              disabled={!airport}
-              accessibilityLabel="Continue"
-              accessibilityRole="button"
-              onPress={() => router.push('/screens/PlanUmrahStep2')}
-            >
-              <Text style={[styles.continueButtonText, airport ? styles.continueButtonTextEnabled : null]}>Continue</Text>
-            </TouchableOpacity>
-          </View>
+          <OneButton
+            title="Continue"
+            onPress={() => router.push('/screens/PlanUmrahStep2')}
+            disabled={!airport}
+          />
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

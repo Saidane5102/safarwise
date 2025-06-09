@@ -2,7 +2,8 @@ import { Ionicons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useRouter } from 'expo-router';
 import React from "react";
-import { Modal, Platform, StyleSheet, Text, TouchableOpacity, View, StatusBar } from "react-native";
+import { Modal, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import OneButton from '../components/OneButton';
 import StepProgress from "./StepProgress";
 
 export default function PlanUmrahStep4() {
@@ -265,16 +266,11 @@ export default function PlanUmrahStep4() {
         </View>
       </View>
       {/* Continue Button (fixed at bottom) */}
-      <View style={styles.buttonWrapper}>
-        <TouchableOpacity
-          style={[styles.continueButton, styles.continueButtonEnabled]}
-          accessibilityLabel="Continue"
-          accessibilityRole="button"
-          onPress={handleContinue}
-        >
-          <Text style={[styles.continueButtonText, styles.continueButtonTextEnabled]}>Continue</Text>
-        </TouchableOpacity>
-      </View>
+      <OneButton
+        title="Continue"
+        onPress={handleContinue}
+        // Always enabled in this step
+      />
     </View>
   );
 }
